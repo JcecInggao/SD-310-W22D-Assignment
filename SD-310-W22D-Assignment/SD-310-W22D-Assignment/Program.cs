@@ -1,7 +1,12 @@
+using SD_310_W22D_Assignment.Models;
+using Microsoft.EntityFrameworkCore;
+
 var builder = WebApplication.CreateBuilder(args);
 
 // Add services to the container.
 builder.Services.AddControllersWithViews();
+
+builder.Services.AddDbContext<MyTunesContext>(options => options.UseSqlServer(builder.Configuration.GetConnectionString("MyTunesContext")));
 
 var app = builder.Build();
 

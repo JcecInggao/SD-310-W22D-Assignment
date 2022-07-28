@@ -1,0 +1,40 @@
+﻿@using SD_310_W22D_Assignment.Models.ViewModels
+@model Song
+
+<h1>Artists songs</h1>
+
+@*Dropdown menu option 1*@
+@*@Html.DisplayNameFor(model => model.Artist)
+@Html.DropDownListFor(model => model.Artist, new SelectList(Model.Artist.Name), "Select Artist")*@
+
+@*Dropdown menu option 2*@
+@*@foreach(Song s in Model.songs){
+    <ul>
+        @foreach(Artist a in s.Artist)
+        {
+            <li>@a.Name</li>
+        }
+    </ul>
+}*@
+
+@*Dropdown menu option 3*@
+<table>
+  <thead>
+    <tr>
+        <th>Song</th>
+        <th>Artist</th>
+    </tr>
+  </thead>
+  <tbody>
+    @foreach(var song in Model)
+    {
+      <tr>@song.Name</tr>
+      <tr>@song.ArtistId</tr>
+    }
+  </tbody>
+</table>
+
+
+<div>
+
+</div>

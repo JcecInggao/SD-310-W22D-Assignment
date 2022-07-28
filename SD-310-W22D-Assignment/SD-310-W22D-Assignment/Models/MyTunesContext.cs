@@ -37,10 +37,6 @@ namespace SD_310_W22D_Assignment.Models
                 entity.Property(e => e.Name)
                     .HasMaxLength(50)
                     .IsFixedLength();
-
-                entity.Property(e => e.Songs)
-                    .HasMaxLength(50)
-                    .IsFixedLength();
             });
 
             modelBuilder.Entity<Collection>(entity =>
@@ -60,13 +56,15 @@ namespace SD_310_W22D_Assignment.Models
 
             modelBuilder.Entity<Song>(entity =>
             {
-                entity.Property(e => e.Artist)
-                    .HasMaxLength(50)
-                    .IsFixedLength();
-
                 entity.Property(e => e.Title)
                     .HasMaxLength(50)
                     .IsFixedLength();
+
+                entity.HasOne(d => d.Artist)
+                    .WithMany(p => p.Songs)
+                    .HasForeignKey(d => d.ArtistId)
+                    .OnDelete(DeleteBehavior.ClientSetNull)
+                    .HasConstraintName("FK_Songs_Songs");
             });
 
             modelBuilder.Entity<User>(entity =>

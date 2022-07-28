@@ -12,8 +12,9 @@ namespace SD_310_W22D_Assignment.Models
 
         public int Id { get; set; }
         public string Title { get; set; } = null!;
-        public string Artist { get; set; } = null!;
+        public int ArtistId { get; set; }
 
+        public virtual Artist Artist { get; set; } = null!;
         public virtual ICollection<Collection> Collections { get; set; }
     }
 }
